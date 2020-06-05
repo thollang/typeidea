@@ -25,12 +25,13 @@ SECRET_KEY = 'uwa9@=mf7ai4nge!%i$_&)4wf)kca##40g_^558unn95n3i!w&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'typeidea',
     'blog',
     'config',
     'comment',
@@ -54,10 +55,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'typeidea.urls'
 
+THEME= 'bootstrap'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'themes', THEME, 'templates' )],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,5 +122,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+STATIC_ROOT = '/tmp/static'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'themes', THEME, "static"),
+]

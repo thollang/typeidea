@@ -1,0 +1,37 @@
+{% extends "./base.html" %}
+
+{% block title %}
+{% if tag %}
+tag label: {{ tag.name }}
+{% endif %}
+
+{% if category %}
+category: {{ category.name }}
+{% endif %}
+{% endblock %}
+
+{% block main %}
+<ul>
+    {% for post in post_list %}
+    <li>
+        <a href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+        <div>
+            <span>author: {{ post.owner.username }}</span>
+            <span>category: {{post.category.name }}</span>
+        </div>
+        <p>{{ post.desc }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% if page_obj %}
+{% if page_obj.has_previous %}
+<a href="?page={{ page_obj.previous_page_number }}">previous page</a>
+{% endif %}
+Page {{ page_obj.number }} or {{ paginator.num_pages }}.
+{% if page_obj.has_next %}
+<a href="?page={{ page_obj.next_page_number }}">next page</a>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+

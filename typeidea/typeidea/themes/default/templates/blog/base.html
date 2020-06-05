@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}homepage{% endblock %} - typeidea blog system</title>
+</head>
+<body>
+<div>top category:
+    {% for cate in navs %}
+    <a href="{% url 'category-list' cate.id %}">{{ cate.name }}</a>
+    {% endfor %}
+</div>
+
+
+{% block main %}
+{% endblock %}
+
+<hr/>
+<div>bottom category:
+    {% for cate in categories %}
+    <a href="{% url 'category-list' cate.id %}">{{ cate.name }}</a>
+    {% endfor %}
+</div>
+
+<hr/>
+
+<div> sidebar show:
+    {% for sidebar in sidebars %}
+        <h4>{{ sidebar.title }}</h4>
+        {{ sidebar.content_html }}
+    {% endfor %}
+</div>    
+</body>
+</html>
